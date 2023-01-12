@@ -297,49 +297,28 @@ function hideSearchError() {
    document.querySelector(".search-error-message").style.display = "none";
 }
 
-//Main search functional programmation algorithm *******************
+//************Main search native loop algorithm ************** 
 function mainSearchAlgo(recipesArray, userInput) {
-   //create array with matching titles
-   const nameMatchArray = recipesArray.filter(recipe => normalize(recipe.name).includes(userInput));
-
-   //create array with maching description
-   const descriptionMatchArray = recipesArray.filter(recipe => normalize(recipe.description).includes(userInput));
-
-   //create array with maching ingredients
-   const ingredientsMatchArray = recipesArray.filter((recipe) => {
-      recipe.ingredients
-         .filter((ingredient) => ingredientsFilter.includes(normalize(ingredient.ingredient)))
-   });
-
-   //create single array from above ones
-   const mainSearchArray = [...nameMatchArray, ...descriptionMatchArray, ...ingredientsMatchArray];
+   const mainSearchArray = [];
+   for (let i = 0; i < recipesArray.length; i++) {
+      //Check if search input matches title + add
+      if (normalize(recipesArray[i].name).includes(userInput)) {
+         mainSearchArray.push(recipesArray[i]);    
+      }
+      //Check if search input matches description + add
+      if (normalize(recipesArray[i].description).includes(userInput)) {
+         mainSearchArray.push(recipesArray[i]);
+      }
+      //Check if search input matches ingredients + add
+      for (let j = 0; j < recipesArray[i].ingredients.length; j++) {
+         if (normalize(recipesArray[i].ingredients[j].ingredient).includes(userInput)) {
+            mainSearchArray.push(recipesArray[i]);
+         }
+      }
+   }
    //Removes duplicates and return array
    return Array.from(new Set(mainSearchArray));
 }
-
-// //Main search native loop algorithm ************** 
-// function mainSearchAlgo(recipesArray, userInput) {
-//    const mainSearchArray = [];
-//    for (let i = 0; i < recipesArray.length; i++) {
-//       //Check if search input matches title + add
-//       if (normalize(recipesArray[i].name).includes(userInput)) {
-//          mainSearchArray.push(recipesArray[i]);    
-//       }
-//       //Check if search input matches description + add
-//       if (normalize(recipesArray[i].description).includes(userInput)) {
-//          mainSearchArray.push(recipesArray[i]);
-//       }
-//       //Check if search input matches ingredients + add
-//       for (let j = 0; j < recipesArray[i].ingredients.length; j++) {
-//          if (normalize(recipesArray[i].ingredients[j].ingredient).includes(userInput)) {
-//             mainSearchArray.push(recipesArray[i]);
-//          }
-//       }
-//    }
-//    //Removes duplicates and return array
-//    return Array.from(new Set(mainSearchArray));
-// }
-
 
 //Main search initialisation
 function mainSearch(mainSearchUserinput) {
