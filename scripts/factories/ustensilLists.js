@@ -33,7 +33,12 @@ class UstensilList {
             tagButton.appendChild(tagButtonClose);
 
             function displayTag() {
-                    activeTags.appendChild(tagButton);
+                    const foundTag = Array.from(activeTags.children).find(element => {
+                         return element.dataset['ustensilActiveTag'] === tagButton.dataset['ustensilActiveTag']
+                     })
+                     if(!foundTag){
+                         activeTags.appendChild(tagButton);
+                     }
             }
 
             tagButtonClose.addEventListener("click", (e) => e.target.parentNode.remove());
