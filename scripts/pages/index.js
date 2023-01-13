@@ -66,15 +66,15 @@ initIngredientList();
 
 //Ingredients Dropdown open/close
 function toggleIngredients() {
-   if (ingredientsDropdown.style.display == "none") {
+   if (ingredientsButton.style.display === "block") {
       ingredientsDropdown.style.display = "block";
       ingredientsButton.style.display = "none";
-
+      //Single grid column when other dropdowns opened
       if (appliancesDropdown.style.display === "block" || ustensilsDropdown.style.display === "block" && window.innerWidth > 992) {
          document.querySelectorAll(".tag-list").forEach(tagList => tagList.style.gridTemplateColumns = "1fr");
       }
-
-   } else {
+   }
+   else if (ingredientsButton.style.display === "none") {
       ingredientsDropdown.style.display = "none";
       ingredientsButton.style.display = "block";
       if (window.innerWidth > 992) {
@@ -102,7 +102,7 @@ initApplianceList();
 
 //Appliances Dropdown open/close
 function toggleAppliances() {
-   if (appliancesDropdown.style.display == "none") {
+   if (appliancesButton.style.display === "block") {
       appliancesDropdown.style.display = "block";
       appliancesButton.style.display = "none";
 
@@ -110,7 +110,7 @@ function toggleAppliances() {
          document.querySelectorAll(".tag-list").forEach(tagList => tagList.style.gridTemplateColumns = "1fr");
       }
 
-   } else {
+   } else if (appliancesButton.style.display === "none") {
       appliancesDropdown.style.display = "none";
       appliancesButton.style.display = "block";
 
@@ -142,7 +142,7 @@ initUstensilList();
 
 //Ustensils Dropdown open/close
 function toggleUstensils() {
-   if (ustensilsDropdown.style.display == "none") {
+   if (ustensilsButton.style.display === "block") {
       ustensilsDropdown.style.display = "block";
       ustensilsButton.style.display = "none";
 
@@ -150,7 +150,7 @@ function toggleUstensils() {
          document.querySelectorAll(".tag-list").forEach(tagList => tagList.style.gridTemplateColumns = "1fr");
       }
 
-   } else {
+   } else if (ustensilsButton.style.display === "none") {
       ustensilsDropdown.style.display = "none";
       ustensilsButton.style.display = "block";
       if (window.innerWidth > 992 && ingredientsDropdown.style.display === "none") {

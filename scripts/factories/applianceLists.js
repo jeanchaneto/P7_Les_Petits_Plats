@@ -33,7 +33,12 @@ class ApplianceList {
             tagButton.appendChild(tagButtonClose);
 
             function displayTag() {
-                    activeTags.appendChild(tagButton);           
+                const foundTag = Array.from(activeTags.children).find(element => {
+                    return element.dataset['applianceActiveTag'] === tagButton.dataset['applianceActiveTag']
+                })
+                if(!foundTag){
+                    activeTags.appendChild(tagButton);
+                }             
                 }
 
             //Close button event listener
