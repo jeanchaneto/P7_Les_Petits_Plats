@@ -255,6 +255,12 @@ function updateTagLists(recipes) {
       document.querySelector(".ustensils-list").remove();
    }
    ustensilsDropdown.appendChild(ustensilList.renderList());
+
+//Single grid column when other dropdowns opened
+if (appliancesDropdown.style.display === "block" || ustensilsDropdown.style.display === "block" && window.innerWidth > 992) {
+   document.querySelectorAll(".tag-list").forEach(tagList => tagList.style.gridTemplateColumns = "1fr");
+}
+
 }
 
 function updateRecipesFromGlobal() {
